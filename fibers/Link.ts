@@ -1,13 +1,16 @@
 import { Fiber } from "../type.ts";
 
 interface LinkProps {
-    url: string;
+    to: string;
     name: string;
-    external: boolean;
 }
 
-const Link: Fiber<LinkProps> = async ({url, name, external}) => {
-    return `<a href="${url + (external ? "" : ".html")}${external ? " target='_blank'" : ""}">${name}</a>`;
+const Link: Fiber = async ({
+    to,
+    name,
+}: LinkProps) => {
+    const url = `${to}.html`;
+    return `<a href="${url}">${name}</a>`;
 };
 
 export default Link;
