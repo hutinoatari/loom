@@ -5,8 +5,7 @@ const Document: LoomDoc = async ({
     head,
     body,
 }) => {
-    const header = await Header();
-    return `<html lang="ja"><head>${head}</head><body>${header}<main>${body}</main></body></html>`;
+    return `<html lang="ja"><head>${head}</head><body>${await Header()}<main>${body}</main></body></html>`;
 };
 
 export default Document;

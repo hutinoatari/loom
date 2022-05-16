@@ -1,5 +1,9 @@
 import Document from "./document.ts";
-import { ensureFile, ensureDir, walk } from "https://deno.land/std@0.139.0/fs/mod.ts";
+import {
+    ensureDir,
+    ensureFile,
+    walk,
+} from "https://deno.land/std@0.139.0/fs/mod.ts";
 import { extname } from "https://deno.land/std@0.139.0/path/mod.ts";
 
 await ensureDir("./dist");
