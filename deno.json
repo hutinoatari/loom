@@ -1,0 +1,10 @@
+{
+    "fmt": {
+        "options": {
+            "indentWidth": 4
+        }
+    },
+    "tasks": {
+        "build": "deno run --allow-read --allow-write build.ts"
+    }
+}
