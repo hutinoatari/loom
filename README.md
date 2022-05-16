@@ -1,6 +1,6 @@
 # Loom
 
-# ビルド
+## ビルド
 
 `deno task build`
 

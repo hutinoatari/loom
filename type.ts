@@ -1,5 +1,5 @@
 export type Fiber<T> = {
-    (param?: T | undefined): Promise<string>;
+    (param: T): Promise<string>;
 };
 
 export type Fabric = {
