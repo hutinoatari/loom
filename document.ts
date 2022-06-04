@@ -1,27 +1,14 @@
 import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 import { Document } from "./type.ts";
-import Header from "./fibers/Header.ts";
 
 const Page: Document = async (head, body) => {
     const document = new DOMParser().parseFromString("", "text/html");
     const html = document.createElement("html");
     html.setAttribute("lang", "ja");
     const headPart = document.createElement("head");
-    if (Array.isArray(head)) {
-        head.forEach((e) => headPart.appendChild(e));
-    } else {
-        headPart.appendChild(head);
-    }
+    head.forEach((e) => headPart.appendChild(e));
     const bodyPart = document.createElement("body");
-    const header = await Header();
-    const main = document.createElement("main");
-    if (Array.isArray(body)) {
-        body.forEach((e) => main.appendChild(e));
-    } else {
-        main.appendChild(body);
-    }
-    bodyPart.appendChild(header);
-    bodyPart.appendChild(main);
+    body.forEach((e) => bodyPart.appendChild(e));
     html.appendChild(headPart);
     html.appendChild(bodyPart);
     return html;
