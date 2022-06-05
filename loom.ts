@@ -1,4 +1,5 @@
 import { Node } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
+import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
 export type Fiber = {
     (...args: any[]): Promise<Node>;
@@ -20,3 +21,7 @@ export type Nozzle = {
 export type Document = {
     (doms: PageDOM): Promise<Node>;
 };
+
+const document = new DOMParser().parseFromString("", "text/html");
+
+export { document };
