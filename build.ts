@@ -29,37 +29,37 @@ for await (const file of files) {
         continue;
     }
     const document = new DOMParser().parseFromString("", "text/html");
-    const { default: fabric, nozzle } = await import("./" + file.path);
+    const { default: fabric, nozzle } = await import(`./${file.path}`);
     if (nozzle) {
         const ids = await nozzle();
         for await (const id of ids) {
-            const { head, body } = await fabric(id);
-            const htmlPart = await Page(head, body);
-            const div = document.createElement("div");
-            div.appendChild(htmlPart);
-            const html = "<!DOCTYPE html>" + div.innerHTML;
             const outputPath = format({
                 root,
                 dir: dir.replace(fromDir, toDir),
                 ext: ".html",
                 name: id,
             });
+            const { head, body } = await fabric({ currentURL: outputPath, id });
+            const htmlPart = await Page({ head, body });
+            const div = document.createElement("div");
+            div.appendChild(htmlPart);
+            const html = "<!DOCTYPE html>" + div.innerHTML;
             await ensureFile(outputPath);
             await Deno.writeTextFileSync(outputPath, html);
             console.log(`generate: ${outputPath}`);
         }
     } else {
-        const { head, body } = await fabric();
-        const htmlPart = await Page(head, body);
-        const div = document.createElement("div");
-        div.appendChild(htmlPart);
-        const html = "<!DOCTYPE html>" + div.innerHTML;
         const outputPath = format({
             root,
             dir: dir.replace(fromDir, toDir),
             ext: ".html",
             name,
         });
+        const { head, body } = await fabric({ currentURL: outputPath });
+        const htmlPart = await Page({ head, body });
+        const div = document.createElement("div");
+        div.appendChild(htmlPart);
+        const html = "<!DOCTYPE html>" + div.innerHTML;
         await ensureFile(outputPath);
         await Deno.writeTextFileSync(outputPath, html);
         console.log(`generate: ${outputPath}`);

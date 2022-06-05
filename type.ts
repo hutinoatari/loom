@@ -4,18 +4,19 @@ export type Fiber = {
     (...args: any[]): Promise<Node>;
 };
 
-export type Fabric = {
-    (path?: string): Promise<
-        { head: Node | Node[]; body: Node | Node[] }
-    >;
+type FabricProps<T> = {
+    currentURL: string;
+    id?: string;
+} & T;
+type PageDOM = { head: Node[]; body: Node[] };
+
+export type Fabric<T> = {
+    (props: FabricProps<T>): Promise<PageDOM>;
 };
 export type Nozzle = {
     (): Promise<string[]>;
 };
 
 export type Document = {
-    (
-        head: Node[],
-        body: Node[],
-    ): Promise<Node>;
+    (doms: PageDOM): Promise<Node>;
 };
