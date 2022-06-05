@@ -7,7 +7,7 @@ const TopPage: Fabric<{}> = async () => {
     link.setAttribute("rel", "stylesheet");
     const header = await Header();
     const p = document.createElement("p");
-    p.appendChild(document.createTextNode("準備中......"));
+    p.textContent = "準備中......";
 
     return {
         head: [link],

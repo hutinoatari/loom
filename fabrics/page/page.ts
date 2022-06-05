@@ -7,7 +7,7 @@ const SubPage: Fabric<{}> = async ({ currentURL, id }) => {
     link.setAttribute("rel", "stylesheet");
     const header = await Header();
     const p = document.createElement("p");
-    p.appendChild(document.createTextNode(`page of ${id}`));
+    p.textContent = `page of ${id}`;
 
     return {
         head: [link],
