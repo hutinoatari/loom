@@ -1,5 +1,5 @@
 import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
-import { Document } from "./type.ts";
+import { Document } from "./loom.ts";
 
 const Page: Document = async ({ head, body }) => {
     const document = new DOMParser().parseFromString("", "text/html");

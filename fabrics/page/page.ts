@@ -1,4 +1,4 @@
-import { Fabric, Nozzle } from "../../type.ts";
+import { Fabric, Nozzle } from "../../loom.ts";
 import Header from "../../fibers/Header.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
