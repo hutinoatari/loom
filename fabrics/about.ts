@@ -1,13 +1,13 @@
 import { document, Fabric } from "../loom.ts";
 import Header from "../fibers/Header.ts";
 
-const TopPage: Fabric<{}> = async ({ currentURL }) => {
+const AboutPage: Fabric<{}> = async ({ currentURL }) => {
     const link = document.createElement("link");
     link.setAttribute("href", "./style.css");
     link.setAttribute("rel", "stylesheet");
     const header = await Header(currentURL);
     const p = document.createElement("p");
-    p.textContent = "準備中......";
+    p.textContent = "準備中2......";
 
     return {
         head: [link],
@@ -15,4 +15,4 @@ const TopPage: Fabric<{}> = async ({ currentURL }) => {
     };
 };
 
-export default TopPage;
+export default AboutPage;
