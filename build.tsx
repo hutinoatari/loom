@@ -1,13 +1,13 @@
 //@deno-types="https://cdn.esm.sh/v77/@types/react@18.0.9/react.d.ts"
-import React from "https://esm.sh/react";
-import { renderToStaticMarkup } from "https://esm.sh/react-dom/server";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import {
     ensureDir,
     ensureFile,
     walk,
-} from "https://deno.land/std@0.139.0/fs/mod.ts";
-import { format, parse } from "https://deno.land/std@0.139.0/path/mod.ts";
+} from "fs/mod.ts";
+import { format, parse } from "path/mod.ts";
 
 const fromDir = "pages";
 const toDir = "dist";

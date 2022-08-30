@@ -7,7 +7,7 @@
             "DOM.Iterable",
             "esnext"
         ],
-        "strict": false
+        "strict": true
     },
     "fmt": {
         "options": {
@@ -15,6 +15,6 @@
         }
     },
     "tasks": {
-        "build": "deno run -A build.tsx"
+        "build": "deno run -A --importmap=import_map.json build.tsx"
     }
 }
