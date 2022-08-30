@@ -15,6 +15,6 @@
         }
     },
     "tasks": {
-        "build": "deno run --allow-read --allow-write build.ts"
+        "build": "deno run -A build.tsx"
     }
 }
