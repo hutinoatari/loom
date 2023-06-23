@@ -15,6 +15,6 @@
         }
     },
     "tasks": {
-        "build": "deno run -A --importmap=import_map.json build.tsx"
+        "build": "deno run -A --importmap=import_map.json build.ts"
     }
 }

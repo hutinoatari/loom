@@ -1,13 +1,6 @@
-//@deno-types="https://cdn.esm.sh/v77/@types/react@18.0.9/react.d.ts"
-import React from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-
-import {
-    ensureDir,
-    ensureFile,
-    walk,
-} from "fs/mod.ts";
+import { ensureDir, ensureFile, walk } from "fs/mod.ts";
 import { format, parse } from "path/mod.ts";
+import { fabricToHTML } from "./loom.ts";
 
 const fromDir = "pages";
 const toDir = "dist";
@@ -18,7 +11,7 @@ const files = walk(fromDir);
 for await (const file of files) {
     if (!file.isFile) continue;
     const { root, dir, ext, name } = parse(file.path);
-    if (ext !== ".tsx") {
+    if (ext !== ".ts") {
         const outputPath = format({
             root,
             dir: dir.replace(fromDir, toDir),
@@ -30,7 +23,7 @@ for await (const file of files) {
         console.log(`copied  : ${outputPath}`);
         continue;
     }
-    const { default: Page } = await import(`./${file.path}`);
+    const { default: page } = await import(`./${file.path}`);
     const outputPath = format({
         root,
         dir: dir.replace(fromDir, toDir),
@@ -38,7 +31,7 @@ for await (const file of files) {
         name,
     });
 
-    const html = "<!DOCTYPE html>" + renderToStaticMarkup(<Page></Page>);
+    const html = `<!DOCTYPE html>${fabricToHTML(page).outerHTML}`;
     await ensureFile(outputPath);
     await Deno.writeTextFileSync(outputPath, html);
     console.log(`generate: ${outputPath}`);
